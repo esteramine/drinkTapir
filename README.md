@@ -1,7 +1,8 @@
 # drinkTapir
-## drinkTapir App Project Practice
 drinkTapir is an app which I tried to practice simulating the functions in food delivery app like foodpanda or Uber eats. 
+
 drinkTapir is basically an app which I simulated the menu options view and order placing function of four different tea shops in Taiwan which are The Alley, Truedan(珍煮丹), CoCo(都可), and Milkshop(迷客夏). 
+
 In this small project, I have implemented and practiced the following skills in Android Studio:
 1.	***RecyclerView***
 2.	RecyclerView with ***CardView***
