@@ -19,13 +19,13 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
 1.	Add libraries in build.gradle file
 2.	(***activity_main.xml***)
 
-  -i.	Change ConstraintLayout to LinearLayout + orientation = “vertical”
+    i.	Change ConstraintLayout to LinearLayout + orientation = “vertical”
   
-  -ii.	Under LinearLayout, add android.support.v7.widget.RecyclerView (required elements: layout_width = “match_parent”, layout_height = “wrap_content”, and id = “recyclerView”)
+    ii.	Under LinearLayout, add android.support.v7.widget.RecyclerView (required elements: layout_width = “match_parent”, layout_height = “wrap_content”, and id = “recyclerView”)
 
 3.	Create a layout file row.xml (Root element: android.support.v7.widget.CardView)
 4.	(***row.xml***)
 
-  >i.	In <…CardView> part, add xmlns:app="http://schemas.android.com/apk/res-auto", cardCornerRadius, cardElevation, cardUseCompatPadding...
+    i.	In <…CardView> part, add xmlns:app="http://schemas.android.com/apk/res-auto", cardCornerRadius, cardElevation, cardUseCompatPadding...
   
-  >ii.	Under <…CardView>, set a RelativeLayout (layout_width = “match_parent”, layout_height = “wrap_content”), and under this RelativeLayout, put all the content you want to put in the cards
+    ii.	Under <…CardView>, set a RelativeLayout (layout_width = “match_parent”, layout_height = “wrap_content”), and under this RelativeLayout, put all the content you want to put in the cards
