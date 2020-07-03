@@ -64,11 +64,13 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
     ```
     
 5. Create a java ***Model*** class 
+
         i. Set all the parameters which data needed to be stored in the cards (from the row.xml file example above, we could set private String storeName, address; private int img;)
     
         ii. Press alt+insert to insert all the getters and setters
         
 6. Create a java ***MyHolder*** class (extends RecyclerView.ViewHolder)  
+
         i . A red light bulb will appear, click on it and add the constructor
         
         ii. Add the parameters needed to display in the cards (from the row.xml example above, we could set public TextView mStore, mAddress; public ImageView mImg;)
@@ -84,6 +86,7 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
         ```
      
 7. Create a MyAdapter class (extends RecyclerView.Adapter<MyHolder>)
+    
         i. A red light bulb will appear, click on it and choose "Implement methods", and three methods which are onCreateViewHolder, onBindViewHolder, getItemCount will be automatically created for you
     
         ii. Add 2 parameters
