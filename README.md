@@ -14,7 +14,9 @@ In this small project, I have implemented and practiced the following skills in 
 8.	***Toast***
 
 How I did the Recyclerview with CardView: 
+
 In order to show the RecyclerView efficiently, we will implement a Model, MyHolder, and MyAdapter class to facilitate it. 
+
 (reference: https://www.youtube.com/watch?v=oq_xGMN0mRE&t=474s)
 1.	Add libraries in build.gradle file
 2.	(***activity_main.xml***)
@@ -29,3 +31,34 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
     i.	In <…CardView> part, add xmlns:app="http://schemas.android.com/apk/res-auto", cardCornerRadius, cardElevation, cardUseCompatPadding...
   
     ii.	Under <…CardView>, set a RelativeLayout (layout_width = “match_parent”, layout_height = “wrap_content”), and under this RelativeLayout, put all the content you want to put in the cards
+    ```xml
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/cardIV"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/tapir"/>
+        <TextView
+            android:id="@+id/cardStoreName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store Name"
+            android:textColor="#000"
+            android:textSize="22dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/cardIV"/>
+        <TextView
+            android:id="@+id/cardAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textSize="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/cardStoreName"/>
+    </RelativeLayout>
+    ```
