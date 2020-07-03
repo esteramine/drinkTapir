@@ -13,12 +13,19 @@ In this small project, I have implemented and practiced the following skills in 
 7.	Passing the useful data to another page using ***Intent***
 8.	***Toast***
 
+
+
 How I did the Recyclerview with CardView: 
 
 In order to show the RecyclerView efficiently, we will implement a Model, MyHolder, and MyAdapter class to facilitate it. 
 
 (reference: https://www.youtube.com/watch?v=oq_xGMN0mRE&t=474s)
-1.	Add libraries in build.gradle file
+1.	Add libraries in build.gradle file (in dependencies)
+```
+implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+implementation 'com.android.support:cardview-v7:28.0.0'
+```
 2.	(***activity_main.xml***)
 
     i.	Change ConstraintLayout to LinearLayout + orientation = “vertical”
@@ -75,7 +82,7 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
         
     ii. Add the parameters needed to display in the cards (from the row.xml example above, we could set public TextView mStore, mAddress; public ImageView mImg;)
         
-    iii. Add all the findViewById method of all the parameters in the constructor, for example:
+    iii. Add all the *findViewById* method of all the parameters in the constructor, for example:
     ```java
     public MyHolder(@NonNull View itemView) {
         super(itemView);
@@ -87,7 +94,7 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
      
 7. Create a MyAdapter class (extends RecyclerView.Adapter<MyHolder>)
     
-    i. A red light bulb will appear, click on it and choose "Implement methods", and three methods which are onCreateViewHolder, onBindViewHolder, getItemCount will be automatically created for you
+    i. A red light bulb will appear, click on it and choose "Implement methods", and three methods which are *onCreateViewHolder*, *onBindViewHolder*, and *getItemCount* will be automatically created for you
     
     ii. Add 2 parameters
     ```java
@@ -103,20 +110,70 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
     }
     ```
         
-    iv. In onCreateViewHolder function, add 
+    iv. In *onCreateViewHolder* function, add 
     ```java
     View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, null);
     return new MyHolder(view);
     ```
         
-    v. In onBindViewHolder function, add setText or setImageResource functions as below to display all the elements set in row.xml 
+    v. In *onBindViewHolder* function, add setText or setImageResource functions as below to display all the elements set in row.xml 
     ```java
-    public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
+    public void onBindViewHolder(@NonNull MyHolder myHolder, int i) { //i is the position
         myHolder.mStore.setText(models.get(i).getStoreName());
         myHolder.mAddress.setText(models.get(i).getAddress());
         myHolder.mImg.setImageResource(models.get(i).getImg());
     }
     ```
         
-    vi. In getItemCount function, change return 0; to return models.size()
+    vi. In *getItemCount* function, change return 0; to return models.size()
+    
+8. (***MainActivity.java***)
+
+    i. Add 2 variables
+    ```java
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+    ```
+    
+    ii. In *onCreate* function, add
+    ```java
+    recyclerView = findViewById(R.id.recyclerView);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    myAdapter = new MyAdapter(this, getMyList());
+    recyclerView.setAdapter(myAdapter);
+    ```
+    
+    iii. Below the *onCreate* function, implement the *getMyList* function as below to display the four tea shops on the app:
+    ```java
+    private ArrayList<Model> getMyList(){
+        ArrayList<Model> models = new ArrayList<>();
+        Model m;
+
+        m = new Model();
+        m.setStoreName("THE ALLEY");
+        m.setAddress("台北市大安區復興南路二段206號");
+        m.setImg(R.drawable.the_alley);
+        models.add(m);
+
+        m = new Model();
+        m.setStoreName("TRUEDAN");
+        m.setAddress("台北市中正區羅斯福路一段12號");
+        m.setImg(R.drawable.truedan);
+        models.add(m);
+
+        m = new Model();
+        m.setStoreName("CoCo");
+        m.setAddress("台北市中正區南昌路一段77號");
+        m.setImg(R.drawable.coco);
+        models.add(m);
+
+        m = new Model();
+        m.setStoreName("Milkshop");
+        m.setAddress("台北市中正區寧波西街50號");
+        m.setImg(R.drawable.milkshop);
+        models.add(m);
+
+        return models;
+    }
+    ```
     
