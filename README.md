@@ -70,7 +70,8 @@ implementation 'com.android.support:cardview-v7:28.0.0'
     </RelativeLayout>
     ```
     and it will show something like the below:
-    <img src = "https://user-images.githubusercontent.com/55351011/86438362-f71e5580-bd38-11ea-9ff8-ee6ce3d2d9d8.PNG" width="50%" height="50%" />
+    
+    <img src = "https://user-images.githubusercontent.com/55351011/86438362-f71e5580-bd38-11ea-9ff8-ee6ce3d2d9d8.PNG" width="113" height="201" />
     
 5. Create a java ***Model*** class 
 
