@@ -65,17 +65,17 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
     
 5. Create a java ***Model*** class 
 
-        i. Set all the parameters which data needed to be stored in the cards (from the row.xml file example above, we could set private String storeName, address; private int img;)
+    i. Set all the parameters which data needed to be stored in the cards (from the row.xml file example above, we could set private String storeName, address; private int img;)
     
-        ii. Press alt+insert to insert all the getters and setters
+    ii. Press alt+insert to insert all the getters and setters
         
 6. Create a java ***MyHolder*** class (extends RecyclerView.ViewHolder)  
 
-        i . A red light bulb will appear, click on it and add the constructor
+    i . A red light bulb will appear, click on it and add the constructor
         
-        ii. Add the parameters needed to display in the cards (from the row.xml example above, we could set public TextView mStore, mAddress; public ImageView mImg;)
+    ii. Add the parameters needed to display in the cards (from the row.xml example above, we could set public TextView mStore, mAddress; public ImageView mImg;)
         
-        iii. Add all the findViewById method of all the parameters in the constructor, for example:
+    iii. Add all the findViewById method of all the parameters in the constructor, for example:
         ```java
         public MyHolder(@NonNull View itemView) {
         super(itemView);
@@ -87,15 +87,15 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
      
 7. Create a MyAdapter class (extends RecyclerView.Adapter<MyHolder>)
     
-        i. A red light bulb will appear, click on it and choose "Implement methods", and three methods which are onCreateViewHolder, onBindViewHolder, getItemCount will be automatically created for you
+    i. A red light bulb will appear, click on it and choose "Implement methods", and three methods which are onCreateViewHolder, onBindViewHolder, getItemCount will be automatically created for you
     
-        ii. Add 2 parameters
+    ii. Add 2 parameters
         ```java
         Context c;
         ArrayList<Model> models; //create a list of array whcih parameters defined in the Model class
         ```
         
-        iii. Add parameterized contructor (press alt+insert and click on "Constructor"), and in the constuctor, add
+    iii. Add parameterized contructor (press alt+insert and click on "Constructor"), and in the constuctor, add
         ```java
         public MyAdapter(Context c, ArrayList<Model> models) {
             this.c = c;
@@ -103,13 +103,13 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
         }
         ```
         
-        iv. In onCreateViewHolder function, add 
+    iv. In onCreateViewHolder function, add 
         ```java
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, null);
         return new MyHolder(view);
         ```
         
-        v. In onBindViewHolder function, add setText or setImageResource functions as below to display all the elements set in row.xml 
+    v. In onBindViewHolder function, add setText or setImageResource functions as below to display all the elements set in row.xml 
         ```java
         public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
             myHolder.mStore.setText(models.get(i).getStoreName());
@@ -118,5 +118,5 @@ In order to show the RecyclerView efficiently, we will implement a Model, MyHold
         }
         ```
         
-        vi. In getItemCount function, change return 0; to return models.size()
+    vi. In getItemCount function, change return 0; to return models.size()
     
