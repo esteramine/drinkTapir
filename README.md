@@ -3,6 +3,19 @@ drinkTapir is an app which I practiced simulating the functions in food delivery
 
 drinkTapir is basically an app which I simulated the menu options view and order placing function of four different tea shops in Taiwan which are The Alley, Truedan(珍煮丹), CoCo(都可), and Milkshop(迷客夏). 
 
+In this drinkTapir app, you could see a main page with four different tea shops, the menu list of a specific shop after clicking on one of those shops, and eventually the "Confirm Order and Pay" page after ordering all the drinks.
+
+Illustrations:
+1. Main Page
+<img src = "https://github.com/esteramine/drinkTapir/blob/master/drinkTapirProject_Main%20Page.png?raw=true" width="150"  />
+<img src = "https://github.com/esteramine/drinkTapir/blob/master/drinkTapirProject_Main%20Page2.png?raw=true" width="150" />
+2. Menu (ex. The Alley's Menu list)
+<img src = "https://github.com/esteramine/drinkTapir/blob/master/drinkTapirProject_The%20Alley's%20Menu.png?raw=true" width="150" />
+3. Confirm and Pay page
+<img src = "https://github.com/esteramine/drinkTapir/blob/master/drinkTapirProject_Confirm%20and%20Pay.png?raw=true" width="150" />
+4. Pay
+<img src = "https://github.com/esteramine/drinkTapir/blob/master/drinkTapirProject_Pay.png?raw=true" width="150" />
+
 In this small project, I have implemented and practiced the following skills in Android Studio:
 1.	***RecyclerView***
 2.	RecyclerView with ***CardView***
@@ -15,7 +28,7 @@ In this small project, I have implemented and practiced the following skills in 
 
 
 
-How I did the Recyclerview with CardView: 
+## How I did the Recyclerview with CardView: 
 
 In order to show the RecyclerView efficiently, we will implement a Model, MyHolder, and MyAdapter class to facilitate it. 
 
@@ -179,4 +192,99 @@ implementation 'com.android.support:cardview-v7:28.0.0'
         return models;
     }
     ```
+
+## How I did the CardView with Item Click to an Intent
+
+1. Create an Interface class (Class name: ItemClickListener), and add a *onItemClickListener* function in it as shown as below:
+```java
+public interface ItemClickListener {
+    void onItemClickListener(View v, int position);
+}
+```
+
+2. (***MyHolder*** class)
     
+    i. Add "implements View.OnClickListener" beside the extends, and implement the method *onClick*
+    
+    ii. Delete the public keyword which is in front of the MyHolder constructor
+    
+    iii. Add a variable **ItemClickListener itemClickListener;** in the class
+    
+    iv. In the constructor, add **itemView.setOnClickListener(this);**
+    
+    v. In the *onCLick* function, add **this.itemClickListener.onItemClickListener(v, getLayoutPosition());**
+    
+    vi. Add a **setItemClickListener** function as shown as below:
+    ```java
+    public void setItemClickListener(ItemClickListener ic){
+        this.itemClickListener = ic;
+    }
+    ```
+    
+    So, eventually, your MyHolder class will be like this:
+    ```java
+    public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView mStore, mAddress;
+        public ImageView mImg;
+        ItemClickListener itemClickListener;
+
+        MyHolder(@NonNull View itemView) {
+            super(itemView);
+            this.mStore = itemView.findViewById(R.id.cardStoreName);
+            this.mAddress = itemView.findViewById(R.id.cardAddress);
+            this.mImg = itemView.findViewById(R.id.cardIV);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            this.itemClickListener.onItemClickListener(v, getLayoutPosition());
+        }
+
+        public void setItemClickListener(ItemClickListener ic){
+            this.itemClickListener = ic;
+        }
+    }
+    ```
+    
+3. Create a new empty Activity (for example, the activity name is "The Alley"), and in the xml file ***activity_the_alley.xml***, design your own interface
+
+4. (***TheAlley.java***)
+    
+    i. Add the needed variables 
+    
+    ii. Hook the variables with their view (ex. mStoreName = findViewById(R.id.storeName2);)
+    
+    iii. Add a back button by adding **ActionBar actionBar = getSupportActionBar();**, and in ***AndroidManifest.xml***, add **android:parent_ActivityName = "MainActivity"** under activity The Alley
+    
+5. (***My Adapter.java***)
+    
+    i. In *onBindViewHolder* function, add
+    ```java
+    myHolder.setItemClickListener(new ItemClickListener() {
+        @Override
+        public void onItemClickListener(View v, int position) {
+            String gStore = models.get(position).getStoreName();
+
+            Intent intent = new Intent(c, TheAlley.class);
+            intent.putExtra("iStore", gStore);
+            c.startActivity(intent);
+        }
+    });
+    ```
+    
+6. (***TheAlley.java***)
+    
+    i. In *onCreate* function, add
+    ```java
+    Intent intent = getIntent();
+    mStore = intent.getStringExtra("iStore");
+    mStoreName.setText(mStore); //set the store name
+    actionBar.setTitle(mStore+"'s Products List");
+    ```
+    
+## Conclusion
+My project was basically repeatedly using all the steps above to create many RecyclerView with CardView and Intents.
+    
+     
